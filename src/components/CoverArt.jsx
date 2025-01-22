@@ -1,36 +1,17 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 
-export default function CoverArt({ coverId }) {
-  const [coverData, setCoverData] = useState(null)
-
-  useEffect(() => {
-    // Simulating data fetching based on coverId
-    // Replace this with your actual data fetching logic
-    const fetchCoverData = async () => {
-      try {
-        // Simulated API call
-        const response = await fetch(`https://api.example.com/cover/${coverId}`)
-        const data = await response.json()
-        setCoverData(data)
-      } catch (error) {
-        console.error("Error fetching cover data:", error)
-      }
-    }
-
-    fetchCoverData()
-  }, [coverId])
-
+export default function CoverArt({ coverUrl, title, artist, className = "w-full h-64 md:h-80" }) {
   return (
-    <div className="relative w-[400px] h-[400px] bg-gray-200 rounded-lg overflow-hidden">
+    <div className={`relative bg-gray-200 rounded-lg overflow-hidden shadow-lg ${className}`}>
       <img
-        src={`https://via.placeholder.com/400x400?text=Cover+Art`}
-        alt="Cover Art"
+        src={coverUrl || "https://via.placeholder.com/400x400?text=Cover+Art"}
+        alt={title ? `${title} by ${artist}` : "Cover Art"}
         className="w-full h-full object-cover"
       />
-      {coverData && (
+      {(title || artist) && (
         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
-          <h2 className="text-xl font-bold truncate">{coverData.title}</h2>
-          <p className="text-sm truncate">{coverData.artist}</p>
+          {title && <h2 className="text-xl font-bold truncate">{title}</h2>}
+          {artist && <p className="text-sm truncate">{artist}</p>}
         </div>
       )}
     </div>
