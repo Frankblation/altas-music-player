@@ -4,7 +4,7 @@ export default function CoverArt({ coverUrl, title, artist, className = "w-full 
   return (
     <div className={`relative bg-gray-200 rounded-lg overflow-hidden shadow-lg ${className}`}>
       <img
-        src={coverUrl || "https://via.placeholder.com/400x400?text=Cover+Art"}
+        src={coverUrl || placeHolder}
         alt={title ? `${title} by ${artist}` : "Cover Art"}
         className="w-full h-full object-cover"
       />
