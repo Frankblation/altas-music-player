@@ -26,10 +26,11 @@ const MusicPlayer = () => {
   }
 
   return (
+    <div className="shadow-lg rounded">
     <div className="min-h-screen bg-background text-foreground p-4 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8">
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-3/4">
             <CurrentlyPlaying song={sampleSongs[currentSongIndex]} />
           </div>
           <div className="w-full md:w-1/2">
@@ -38,6 +39,7 @@ const MusicPlayer = () => {
         </div>
       </div>
     </div>
+  </div>
   )
 }
 
