@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import MusicPlayer from "../components/MusicPlayer"
 import Footer from "./Footer"
 
+
 const App = () => {
   const [darkMode, setDarkMode] = useState(false)
 
@@ -28,9 +29,6 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-200">
-      <header className="py-4 px-6 bg-primary text-primary-foreground">
-        <h1 className="text-2xl font-bold">Atlas Music Player</h1>
-      </header>
 
       <main className="container mx-auto px-4 py-8">
         <MusicPlayer />

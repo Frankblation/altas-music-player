@@ -4,7 +4,7 @@ import Playlist from "./Playlist"
 import LoadingSkeleton from "./LoadingSkeleton"
 
 const sampleSongs = [
-  { id: 1, title: "Bohemian Rhapsody", artist: "Queen", length: "5:55", coverArt: "/images/Placeholder.svg" },
+  { id: 1, title: "Bohemian Rhapsody", artist: "Queen", length: "5:55", coverArt: "/assets/placeholder.svg" },
   { id: 2, title: "Stairway to Heaven", artist: "Led Zeppelin", length: "8:02", coverArt: "/images/Placeholder.svg" },
   { id: 3, title: "Hotel California", artist: "Eagles", length: "6:30", coverArt: "/images/Placeholder.svg" },
   { id: 4, title: "Imagine", artist: "John Lennon", length: "3:01", coverArt: "/images/Placeholder.svg" },
