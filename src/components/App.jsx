@@ -1,41 +1,20 @@
-import React, { useState } from "react"
-import NavBar from "./NavBar"
-import MusicPlayer from "./MusicPlayer"
-import Playlist from "./Playlist"
-import Footer from "./Footer"
-
-export default function App() {
-  const [currentTrack, setCurrentTrack] = useState({
-    id: 1,
-    title: "Awesome Song",
-    artist: "Amazing Artist",
-    coverUrl: "https://via.placeholder.com/400x400?text=Awesome+Song",
-    duration: "3:45",
-  })
-
-  const playlist = [
-    { id: 1, title: "Awesome Song", artist: "Amazing Artist", duration: "3:45" },
-    { id: 2, title: "Cool Tune", artist: "Groovy Band", duration: "4:20" },
-    { id: 3, title: "Mellow Melody", artist: "Smooth Singer", duration: "3:15" },
-  ]
-
-  const handleTrackChange = (track) => {
-    setCurrentTrack(track)
-  }
-
+import React from "react"
+import MusicPlayer from "../components/MusicPlayer"
+import Footer from "../components/Footer"
+const App = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <NavBar />
-      <main className="flex-grow flex flex-col md:flex-row p-4 gap-4">
-        <div className="md:w-2/3">
-          <MusicPlayer currentTrack={currentTrack} />
-        </div>
-        <div className="md:w-1/3">
-          <Playlist playlist={playlist} onTrackSelect={handleTrackChange} currentTrackId={currentTrack.id} />
-        </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="py-4 px-6 bg-primary text-primary-foreground">
+        <h1 className="text-2xl font-bold">Atlas Music Player</h1>
+      </header>
+
+      <main className="container mx-auto px-4 py-8">
+        <MusicPlayer />
       </main>
+
       <Footer />
     </div>
   )
 }
 
+export default App

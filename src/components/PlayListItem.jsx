@@ -1,17 +1,16 @@
 import React from "react"
 
-export default function PlayListItem({ song, onSelect, isActive }) {
+const PlayListItem = ({ title, artist, length, isSelected }) => {
   return (
-    <li
-      className={`flex justify-between items-center py-2 border-b last:border-b-0 cursor-pointer hover:bg-gray-100 ${isActive ? "bg-blue-100" : ""}`}
-      onClick={onSelect}
-    >
+    <div className={`flex justify-between items-center p-3 ${isSelected ? "bg-blue-100" : "hover:bg-gray-100"}`}>
       <div>
-        <h3 className={`font-semibold ${isActive ? "text-blue-600" : ""}`}>{song.title}</h3>
-        <p className="text-sm text-gray-600">{song.artist}</p>
+        <h3 className="font-medium text-gray-800">{title}</h3>
+        <p className="text-sm text-gray-600">{artist}</p>
       </div>
-      <span className="text-sm text-gray-600">{song.duration}</span>
-    </li>
+      <span className="text-sm text-gray-500">{length}</span>
+    </div>
   )
 }
+
+export default PlayListItem
 
