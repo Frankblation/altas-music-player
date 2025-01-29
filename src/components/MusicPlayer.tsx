@@ -1,0 +1,72 @@
+import React, { useState, useEffect } from "react";
+import CurrentlyPlaying from "./CurrentlyPlaying";
+import Playlist from "./Playlist";
+import LoadingSkeleton from "./LoadingSkeleton";
+
+
+interface Song {
+  id: string;
+  title: string;
+  artist: string;
+  genre: string;
+  duration: number;
+  cover: string; // Updated field name from 'coverImageUrl' to 'cover'
+  song: string; // URL of the song
+}
+
+const MusicPlayer: React.FC = () => {
+  const [songs, setSongs] = useState<Song[]>([]);
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPlaylist = async () => {
+      try {
+        const response = await fetch('/api/v1/playlist');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch playlist: ${response.status}`);
+        }
+        const data = await response.json();
+        setSongs(data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load playlist');
+        setLoading(false);
+      }
+    };
+
+    fetchPlaylist();
+  }, []);
+
+  if (loading) {
+    return <LoadingSkeleton />;
+  }
+
+  if (error) {
+    return <div className="text-red-500 p-4">{error}</div>;
+  }
+
+  return (
+    <div className="shadow-lg rounded">
+      <div className="min-h-screen bg-background text-foreground p-4 transition-colors duration-200">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-8">
+            <div className="w-full md:w-3/4">
+              <CurrentlyPlaying song={songs[currentSongIndex]} />
+            </div>
+            <div className="w-full md:w-1/2">
+              <Playlist
+                songs={songs}
+                currentSongIndex={currentSongIndex}
+                onSongSelect={(index) => setCurrentSongIndex(index)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MusicPlayer;

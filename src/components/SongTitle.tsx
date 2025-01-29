@@ -1,4 +1,4 @@
-import React from "react"
+
 
 const SongTitle = ({ title, artist }) => {
   return (

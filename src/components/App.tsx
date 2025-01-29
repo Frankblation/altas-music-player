@@ -1,35 +1,37 @@
-import React, { useState, useEffect } from "react"
-import MusicPlayer from "../components/MusicPlayer"
-import Footer from "./Footer"
-
+import { useState, useEffect } from "react";
+import MusicPlayer from "./MusicPlayer";
+import Footer from "./Footer";
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check user's system preference
+    // Check user's system preference on initial load
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setDarkMode(true)
+      setDarkMode(true);
     }
 
     // Listen for changes in system preference
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-    const handleChange = (e) => setDarkMode(e.matches)
-    mediaQuery.addListener(handleChange)
-    return () => mediaQuery.removeListener(handleChange)
-  }, [])
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e) => setDarkMode(e.matches);
+    mediaQuery.addListener(handleChange);
+
+    return () => {
+      mediaQuery.removeListener(handleChange); // Clean up listener on unmount
+    };
+  }, []);
 
   useEffect(() => {
+    // Apply the dark or light mode classes to the document root
     if (darkMode) {
-      document.documentElement.classList.add("dark")
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark")
+      document.documentElement.classList.remove("dark");
     }
-  }, [darkMode])
+  }, [darkMode]);
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-200">
-
       <main className="container mx-auto px-4 py-8">
         <MusicPlayer />
       </main>
@@ -43,8 +45,7 @@ const App = () => {
         Toggle {darkMode ? "Light" : "Dark"} Mode
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default App
-
+export default App;
