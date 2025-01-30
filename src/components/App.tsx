@@ -5,6 +5,7 @@ import Footer from "./Footer";
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
 
+
   useEffect(() => {
     // Check user's system preference on initial load
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -13,7 +14,7 @@ const App = () => {
 
     // Listen for changes in system preference
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e) => setDarkMode(e.matches);
+    const handleChange = (event: MediaQueryListEvent) => setDarkMode(event.matches);
     mediaQuery.addListener(handleChange);
 
     return () => {

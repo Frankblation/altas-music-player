@@ -3,15 +3,14 @@ import CurrentlyPlaying from "./CurrentlyPlaying";
 import Playlist from "./Playlist";
 import LoadingSkeleton from "./LoadingSkeleton";
 
-
 interface Song {
   id: string;
   title: string;
   artist: string;
   genre: string;
   duration: number;
-  cover: string; // Updated field name from 'coverImageUrl' to 'cover'
-  song: string; // URL of the song
+  cover: string; 
+  song: string;
 }
 
 const MusicPlayer: React.FC = () => {
@@ -20,31 +19,49 @@ const MusicPlayer: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchPlaylist = async () => {
-      try {
-        const response = await fetch('/api/v1/playlist');
-        if (!response.ok) {
-          throw new Error(`Failed to fetch playlist: ${response.status}`);
-        }
-        const data = await response.json();
-        setSongs(data);
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to load playlist');
-        setLoading(false);
+  const fetchPlaylist = async () => {
+    try {
+      const response = await fetch("/api/v1/playlist");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch playlist: ${response.status}`);
       }
-    };
+      const data = await response.json();
+      setSongs(data);
+      setLoading(false);
+    } catch (err) {
+      setError("Failed to load playlist. Try refreshing.");
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
+    fetchPlaylist();
     fetchPlaylist();
   }, []);
+
+  const handleRetry = () => {
+    setError(null);
+    setLoading(true);
+    setCurrentSongIndex(0); // Reset to first song in case of error
+    fetchPlaylist();
+  };
 
   if (loading) {
     return <LoadingSkeleton />;
   }
 
   if (error) {
-    return <div className="text-red-500 p-4">{error}</div>;
+    return (
+      <div className="text-red-500 p-4">
+        <div>{error}</div>
+        <button
+          onClick={handleRetry}
+          className="text-blue-500 hover:underline mt-2"
+        >
+          Retry
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -53,7 +70,11 @@ const MusicPlayer: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row gap-8">
             <div className="w-full md:w-3/4">
-              <CurrentlyPlaying song={songs[currentSongIndex]} />
+              <CurrentlyPlaying 
+                song={songs[currentSongIndex]} 
+                currentSongIndex={currentSongIndex} 
+                setCurrentSongIndex={setCurrentSongIndex} 
+              />
             </div>
             <div className="w-full md:w-1/2">
               <Playlist
