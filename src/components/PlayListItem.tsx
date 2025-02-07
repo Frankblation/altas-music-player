@@ -11,7 +11,7 @@ interface PlayListItemProps {
 const PlayListItem = ({ title, artist, length, isSelected, onClick }: PlayListItemProps) => {
   return (
     <div
-      className={`flex justify-between items-center p-3 ${isSelected ? "bg-blue-100" : "hover:bg-gray-100"}`}
+      className={`flex rounded-md shadow-sm justify-between items-center p-3 dark:border-m-cyan-900 ${isSelected ? "bg-blue-100" : "hover:bg-gray-100"}`}
       onClick={onClick}
     >
       <div>

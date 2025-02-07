@@ -1,9 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const VolumeControls = ({ volume, setVolume }) => {
-  const handleVolumeChange = (e) => {
-    const newVolume = parseFloat(e.target.value); // Get value as float
-    setVolume(newVolume); // Update parent component state
+interface VolumeControlsProps {
+  volume: number;
+  setVolume: (volume: number) => void;
+}
+const VolumeControls: React.FC<VolumeControlsProps> = ({ volume, setVolume }) => {
+  const [localVolume, setLocalVolume] = useState(volume);
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    setLocalVolume(newVolume);
+
+    console.log(`New volume: ${newVolume}, Local volume: ${localVolume}`);
   };
 
   return (

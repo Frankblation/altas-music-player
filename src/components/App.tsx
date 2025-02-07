@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import MusicPlayer from "./MusicPlayer";
 import Footer from "./Footer";
 
+
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
-
 
   useEffect(() => {
     // Check user's system preference on initial load
@@ -32,18 +32,18 @@ const App = () => {
   }, [darkMode]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-200">
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-200 dark:bg-slate-900">
       <main className="container mx-auto px-4 py-8">
-        <MusicPlayer />
+          <MusicPlayer />
       </main>
 
       <Footer />
 
       <button
         onClick={() => setDarkMode(!darkMode)}
-        className="fixed bottom-4 right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full shadow-lg hover:opacity-80 transition-opacity duration-200"
+        className="fixed bottom-4 right-4 bg-slate-900 text-slate-400 px-4 py-2 rounded-full shadow-xlg opacity-95 hover:opacity-90 transition-opacity duration-200"
       >
-        Toggle {darkMode ? "Light" : "Dark"} Mode
+        {darkMode ? "Light" : "Dark"} Mode
       </button>
     </div>
   );

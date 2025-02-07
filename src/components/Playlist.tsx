@@ -23,8 +23,8 @@ const formatDuration = (seconds: number): string => {
 
 const Playlist = ({ songs = [], currentSongIndex = 0, onSongSelect }: PlaylistProps) => {
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      <h2 className="text-xl font-bold p-4 bg-gray-100 dark:bg-black">Playlist</h2>
+    <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+      <h2 className="text-xl font-bold rounded-md p-4 bg-gray-100 dark:bg-black">Playlist</h2>
       <div className="divide-y divide-gray-200">
         {songs.length > 0 ? (
           songs.map((song, index) => (
@@ -34,7 +34,7 @@ const Playlist = ({ songs = [], currentSongIndex = 0, onSongSelect }: PlaylistPr
               artist={song.artist}
               length={formatDuration(song.duration)}
               isSelected={index === currentSongIndex}
-              onClick={() => onSongSelect(index)}
+              onClick={() => onSongSelect(index)} // On selecting a song, update the currentSongIndex
             />
           ))
         ) : (
@@ -45,4 +45,4 @@ const Playlist = ({ songs = [], currentSongIndex = 0, onSongSelect }: PlaylistPr
   )
 }
 
-export default Playlist
+export default Playlist;

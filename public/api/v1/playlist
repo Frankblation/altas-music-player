@@ -27,13 +27,13 @@
         "genre": "Psychedelic Rock",
         "duration": 240
     },
-    {
-        "id": "sg9obf34n8qtnpq5t19w1b9a",
-        "title": "Urban Serenade",
-        "artist": "Midnight Groove",
-        "genre": "Jazz/Funk",
-        "duration": 162
-    },
+        {
+            "id": "sg9obf34n8qtnpq5t19w1b9a",
+            "title": "Urban Serenade",
+            "artist": "Midnight Groove",
+            "genre": "Jazz/Funk",
+            "duration": 162
+        },
     {
         "id": "u7wkgyiyiz7xuxcueoxzb5d5",
         "title": "Whispers in the Wind",

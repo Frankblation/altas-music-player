@@ -1,65 +1,86 @@
-import { useState, useEffect } from "react";
-import CoverArt from "./CoverArt.tsx";
-import SongTitle from "./SongTitle.tsx";
-import PlayControls from "./PlayControls.tsx";
-import VolumeControls from "./VolumeControls.tsx";
+import type React from "react"
+import CoverArt from "./CoverArt"
+import SongTitle from "./SongTitle"
+import PlayControls from "./PlayControls"
+import AudioPlayer from "./AudioPlayer"
 
-interface CurrentlyPlayingProps {
-  song: any;
-  currentSongIndex: number;
-  setCurrentSongIndex: (index: number) => void;
+interface Song {
+  id: string
+  title: string
+  artist: string
+  cover: string
+  song: string
 }
 
-const CurrentlyPlaying: React.FC<CurrentlyPlayingProps> = ({ song, currentSongIndex, setCurrentSongIndex }) => {
-  const [volume, setVolume] = useState(0.5);
-  const [currentSong, setCurrentSong] = useState(song);
-  const [loading, setLoading] = useState(!song.cover || !song.song);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchSongDetails = async () => {
-      if (!song.id || (song.cover && song.song)) return;
-
-      try {
-        const response = await fetch(`/api/v1/songs/${song.id}`);
-        if (!response.ok) throw new Error(`Failed to fetch song: ${response.status}`);
-
-        const songDetails = await response.json();
-        setCurrentSong(songDetails);
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to load song details"); // Now this is okay
-        setLoading(false);
-      }
-    };
-
-    fetchSongDetails();
-  }, [song]);
-
-  if (loading) {
-    return <div>Loading song...</div>;
+interface CurrentlyPlayingProps {
+  songs: Song[]
+  currentSongIndex: number
+  setCurrentSongIndex: (index: number) => void
+  isPlaying: boolean
+  setIsPlaying: (playing: boolean) => void
+  volume: number
+  setVolume: (volume: number) => void
+  speed: number
+  isShuffle: boolean
+  handlePlaybackControls: {
+    togglePlay: () => void
+    nextSong: () => void
+    previousSong: () => void
+    changeSpeed: () => void
+    toggleShuffle: () => void
   }
+}
 
-  if (error) {
-    return <div className="text-red-500">{error}</div>;
+const CurrentlyPlaying: React.FC<CurrentlyPlayingProps> = ({
+  songs,
+  currentSongIndex,
+  setCurrentSongIndex,
+  isPlaying,
+  setIsPlaying,
+  volume,
+  setVolume,
+  speed,
+  isShuffle,
+  handlePlaybackControls,
+}) => {
+  const currentSong = songs[currentSongIndex]
+
+  if (!currentSong) {
+    return <div>No song playing</div>
   }
 
   return (
-    <div className="flex flex-col items-center space-y-6 p-6 bg-white rounded-lg shadow-lg">
+    <div className="flex flex-col rounded-3xl items-center space-y-6 p-6 bg-white
+     shadow-lg">
       <CoverArt cover={currentSong.cover} />
-      <SongTitle
-        title={currentSong.title || "No Song Playing"}
-        artist={currentSong.artist || "Unknown Artist"}
-      />
+      <SongTitle title={currentSong.title} artist={currentSong.artist} />
 
       <PlayControls
-        songs={[currentSong]}
+        isPlaying={isPlaying}
+        togglePlay={handlePlaybackControls.togglePlay}
+        playNextSong={handlePlaybackControls.nextSong}
+        playPreviousSong={handlePlaybackControls.previousSong}
+        isShuffle={isShuffle}
+        toggleShuffle={handlePlaybackControls.toggleShuffle}
+        speed={speed}
+        toggleSpeed={handlePlaybackControls.changeSpeed}
+        volume={volume}
+        setVolume={setVolume}
+      />
+
+      <AudioPlayer
+        playlist={songs}
         currentSongIndex={currentSongIndex}
         setCurrentSongIndex={setCurrentSongIndex}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        isShuffle={isShuffle}
+        volume={volume}
+        speed={speed}
       />
-      <VolumeControls volume={volume} setVolume={setVolume} />
     </div>
-  );
-};
+  )
+}
 
-export default CurrentlyPlaying;
+export default CurrentlyPlaying
+
