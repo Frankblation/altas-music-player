@@ -1,13 +1,8 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import CoverArt from "../components/CoverArt";
+import { render } from "@testing-library/react";
+import { expect, test } from "vitest";
+import CoverArt from "../components/CoverArt"; // Fix the import if needed
 
-describe("CoverArt Component", () => {
-  const sampleCover = "https://example.com/album-cover.jpg";
-
-  it("renders the image with correct src", () => {
-    render(<CoverArt cover={sampleCover} />);
-    const imageElement = screen.getByRole("img", { name: /album cover/i });
-    expect(imageElement).toHaveAttribute("src", sampleCover);
-  });
+test("CoverArt renders correctly", () => {
+  const { container } = render(<CoverArt cover="https://example.com/cover.jpg" />);
+  expect(container).toMatchSnapshot();
 });

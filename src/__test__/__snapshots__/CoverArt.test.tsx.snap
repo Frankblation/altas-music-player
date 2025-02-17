@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CoverArt renders correctly 1`] = `
+<div>
+  <div
+    class="w-[400px] h-[400px] rounded-3xl overflow-hidden shadow-xlg flex items-center justify-center bg-black"
+  >
+    <img
+      alt="Album Cover"
+      class="max-w-full max-h-full object-cover"
+      src="https://example.com/cover.jpg"
+    />
+  </div>
+</div>
+`;

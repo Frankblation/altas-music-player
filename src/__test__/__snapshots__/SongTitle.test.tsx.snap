@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SongTitle renders default style 1`] = `
+<div>
+  <div
+    class="text-center"
+  >
+    <h2
+      class="text-2xl font-bold text-gray-800"
+    >
+      My Song
+    </h2>
+    <p
+      class="text-lg text-gray-600"
+    />
+  </div>
+</div>
+`;
+
+exports[`SongTitle renders long title 1`] = `
+<div>
+  <div
+    class="text-center"
+  >
+    <h2
+      class="text-2xl font-bold text-gray-800"
+    >
+      This is a very long song title that might wrap
+    </h2>
+    <p
+      class="text-lg text-gray-600"
+    />
+  </div>
+</div>
+`;

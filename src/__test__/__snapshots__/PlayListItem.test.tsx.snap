@@ -1,0 +1,47 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PlayListItem renders with title and artist 1`] = `
+<div>
+  <div
+    class="flex rounded-md shadow-sm justify-between items-center p-3 dark:border-m-cyan-900 hover:bg-gray-100"
+  >
+    <div>
+      <h3
+        class="font-medium text-gray-800"
+      >
+        Song A
+      </h3>
+      <p
+        class="text-sm text-gray-600"
+      >
+        Artist A
+      </p>
+    </div>
+    <span
+      class="text-sm text-gray-500"
+    />
+  </div>
+</div>
+`;
+
+exports[`PlayListItem renders without artist 1`] = `
+<div>
+  <div
+    class="flex rounded-md shadow-sm justify-between items-center p-3 dark:border-m-cyan-900 hover:bg-gray-100"
+  >
+    <div>
+      <h3
+        class="font-medium text-gray-800"
+      >
+        Song B
+      </h3>
+      <p
+        class="text-sm text-gray-600"
+      />
+    </div>
+    <span
+      class="text-sm text-gray-500"
+    />
+  </div>
+</div>
+`;
