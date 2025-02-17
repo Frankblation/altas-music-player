@@ -2,12 +2,12 @@ import { render } from "@testing-library/react";
 import { expect, test } from "vitest";
 import SongTitle from "../components/SongTitle";
 
-test("SongTitle renders default style", () => {
-  const { container } = render(<SongTitle title="My Song" />);
+test("SongTitle renders correctly with title and artist", () => {
+  const { container } = render(<SongTitle title="Bohemian Rhapsody" artist="Queen" />);
   expect(container).toMatchSnapshot();
 });
 
-test("SongTitle renders long title", () => {
-  const { container } = render(<SongTitle title="This is a very long song title that might wrap" />);
+test("SongTitle renders correctly with only title", () => {
+  const { container } = render(<SongTitle title="Imagine" artist="" />);
   expect(container).toMatchSnapshot();
 });

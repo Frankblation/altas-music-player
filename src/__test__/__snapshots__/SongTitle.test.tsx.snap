@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SongTitle renders default style 1`] = `
+exports[`SongTitle renders correctly with only title 1`] = `
 <div>
   <div
     class="text-center"
@@ -8,7 +8,7 @@ exports[`SongTitle renders default style 1`] = `
     <h2
       class="text-2xl font-bold text-gray-800"
     >
-      My Song
+      Imagine
     </h2>
     <p
       class="text-lg text-gray-600"
@@ -17,7 +17,7 @@ exports[`SongTitle renders default style 1`] = `
 </div>
 `;
 
-exports[`SongTitle renders long title 1`] = `
+exports[`SongTitle renders correctly with title and artist 1`] = `
 <div>
   <div
     class="text-center"
@@ -25,11 +25,13 @@ exports[`SongTitle renders long title 1`] = `
     <h2
       class="text-2xl font-bold text-gray-800"
     >
-      This is a very long song title that might wrap
+      Bohemian Rhapsody
     </h2>
     <p
       class="text-lg text-gray-600"
-    />
+    >
+      Queen
+    </p>
   </div>
 </div>
 `;

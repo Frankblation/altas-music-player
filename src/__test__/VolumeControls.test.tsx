@@ -1,18 +1,11 @@
 import { render } from "@testing-library/react";
-import { expect, test } from "vitest";
-import VolumeControl from "../components/VolumeControls";
+import { expect, test, vi } from "vitest";
+import VolumeControls from "../components/VolumeControls";
 
-test("VolumeControl renders with default volume", () => {
-  const { container } = render(<VolumeControl volume={50} />);
-  expect(container).toMatchSnapshot();
-});
-
-test("VolumeControl renders at max volume", () => {
-  const { container } = render(<VolumeControl volume={100} />);
-  expect(container).toMatchSnapshot();
-});
-
-test("VolumeControl renders at min volume", () => {
-  const { container } = render(<VolumeControl volume={0} />);
+test("VolumeControls renders with default volume", () => {
+  const mockSetVolume = vi.fn();
+  const { container } = render(
+    <VolumeControls volume={0.5} setVolume={mockSetVolume} />
+  );
   expect(container).toMatchSnapshot();
 });

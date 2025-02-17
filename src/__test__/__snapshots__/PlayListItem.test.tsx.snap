@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`PlayListItem renders with title and artist 1`] = `
+exports[`PlayListItem renders with all props 1`] = `
 <div>
   <div
-    class="flex rounded-md shadow-sm justify-between items-center p-3 dark:border-m-cyan-900 hover:bg-gray-100"
+    class="flex rounded-md shadow-sm justify-between items-center p-3 dark:border-m-cyan-900 bg-blue-100"
   >
     <div>
       <h3
@@ -19,7 +19,61 @@ exports[`PlayListItem renders with title and artist 1`] = `
     </div>
     <span
       class="text-sm text-gray-500"
-    />
+    >
+      3:45
+    </span>
+  </div>
+</div>
+`;
+
+exports[`PlayListItem renders with isSelected=false 1`] = `
+<div>
+  <div
+    class="flex rounded-md shadow-sm justify-between items-center p-3 dark:border-m-cyan-900 hover:bg-gray-100"
+  >
+    <div>
+      <h3
+        class="font-medium text-gray-800"
+      >
+        Song C
+      </h3>
+      <p
+        class="text-sm text-gray-600"
+      >
+        Artist C
+      </p>
+    </div>
+    <span
+      class="text-sm text-gray-500"
+    >
+      4:20
+    </span>
+  </div>
+</div>
+`;
+
+exports[`PlayListItem renders with isSelected=true 1`] = `
+<div>
+  <div
+    class="flex rounded-md shadow-sm justify-between items-center p-3 dark:border-m-cyan-900 bg-blue-100"
+  >
+    <div>
+      <h3
+        class="font-medium text-gray-800"
+      >
+        Song D
+      </h3>
+      <p
+        class="text-sm text-gray-600"
+      >
+        Artist D
+      </p>
+    </div>
+    <span
+      class="text-sm text-gray-500"
+    >
+      5:00
+    </span>
   </div>
 </div>
 `;
@@ -41,7 +95,9 @@ exports[`PlayListItem renders without artist 1`] = `
     </div>
     <span
       class="text-sm text-gray-500"
-    />
+    >
+      2:30
+    </span>
   </div>
 </div>
 `;
